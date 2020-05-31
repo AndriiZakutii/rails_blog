@@ -1,0 +1,22 @@
+
+<h1>
+  <%= @category&.name || "All"%> posts
+</h1>
+
+<% if @category %>
+<%= link_to "All posts", posts_path %>
+<% end %>
+
+<div class="posts-container">
+
+  <% @posts.each do |post| %>
+    <div class="post">
+      <h3> <%= post.title %> </h3>
+      <p> Category: <%= link_to post.category.name,
+        category_posts_path(category_handle: post.category.handle)%> </p>
+      <p> Created at: <%= post.created_at %> </p>
+      <p> <%= post.text %> </p>
+      <%= link_to "Read more", post_path(post), :class => "btn btn-info" %>
+    </div>
+  <% end %>
+</div>
